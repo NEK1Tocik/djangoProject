@@ -1,3 +1,5 @@
+from project1.bot import main
+import asyncio
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -5,7 +7,10 @@ from django.views.decorators.csrf import csrf_exempt
 from project1.models import ModelAlex, ModelReg
 
 
+@csrf_exempt
 def index(request):
+    if request.method == 'POST':
+        asyncio.run(main()) #запуск бота
     return render(request, 'index.html')
 
 @csrf_exempt
@@ -26,12 +31,13 @@ def login(request):
 
 @csrf_exempt
 def author(request):
-    reg = ModelReg()
     if request.method == 'POST':
         data = ModelReg.objects.all()
+        print(data)
+        print(f"Из пост запроса. Почта: {request.POST['email']} Pass: {request.POST['password']}")
         for i in data:
+            print(f'Текущий объект из базы данных. Почта: {i.email} Pass: {i.password}')
             if request.POST['email'] == i.email and request.POST['password'] == i.password:
                 return HttpResponse('авторизация прошла успешно')
-            else:
-                return render(request, 'index.html', {'err': 'авторизация не пройдена'})
+        return render(request, 'index.html', {'err': 'авторизация не пройдена'})
     return render(request, 'author.html')

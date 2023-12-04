@@ -15,10 +15,12 @@
 
         .mb-3 {
             margin-top: 20%;
-            display: flex;
+            display: inline-block;
             justify-content: center;
+            margin-left: 50%;
         }
         .mb-3 input{
+            display: block;
             margin-left: 5px;
             border-radius: 10px;
         }
@@ -35,10 +37,10 @@
 </head>
 <body>
 <form class="mb-3" action="" method="post">
-    <input name="login" value="login">
-    <input type="password" name="password" value="password">
-    <input type="password" name="rpassword" value="password">
-    <input type="email" name="email" value="email">
+    <input name="login" placeholder="login">
+    <input type="password" name="password" placeholder="password">
+    <input type="password" name="rpassword" placeholder="password">
+    <input type="email" name="email" placeholder="email">
     <input class="sub" type="submit" value="зарегистрироваться">
     {{ err }}
 </form>
