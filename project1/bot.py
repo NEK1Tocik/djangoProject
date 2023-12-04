@@ -15,7 +15,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
 
 logging.basicConfig(level=logging.INFO)
 
-bot = Bot(token="6977634645:AAHVjUv7lfJWDSPs4vDFYpRoXZjHt34_SBE")
+bot = Bot(token="YOUR_BOT_TOKEN")
 dp = Dispatcher(bot=bot, storage=MemoryStorage())
 
 Base = declarative_base()
