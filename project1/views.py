@@ -1,3 +1,4 @@
+from fire import fire_set
 from project1.bot import main
 import asyncio
 from django.http import HttpResponse
@@ -41,3 +42,13 @@ def author(request):
                 return HttpResponse('авторизация прошла успешно')
         return render(request, 'index.html', {'err': 'авторизация не пройдена'})
     return render(request, 'author.html')
+
+
+# def base(request):
+#     return render(request, 'fireb.html')
+
+@csrf_exempt
+def firebase(request):
+    if request.method == 'POST':
+        fire_set(request.POST['inp'])
+    return render(request, 'fireb.html')
